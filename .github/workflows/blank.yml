@@ -29,17 +29,8 @@ jobs:
        pwd
        ls
        
-    - name: Switch to pages
-      uses: actions/checkout@v2
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        ref: gh-pages
-    
-    - name: Make the publish
-      run: |
-        git --version
-        git config user.name "GitHub Actionspants"
-        git config user.email "<>"
-        mv dist/${{ github.event.pull_request.number }} pr/${{ github.event.pull_request.number }}
-        git commit -am "(re)publish docs for PR because commit ${{ github.event.pull_request.head.sha }}"
-        git push
-        echo sigh
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./pr/${{ github.event.pull_request.number }}
