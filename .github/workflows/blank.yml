@@ -35,6 +35,7 @@ jobs:
       uses: crazy-max/ghaction-github-pages@v2
       with:
         target_branch: gh-pages
-        build_dir: dist/${{ github.event.pull_request.number }}
+        build_dir: dist/
+        jekyll: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
