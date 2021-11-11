@@ -4,7 +4,6 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
     types: [opened, sychonize, edited, reopened]
     
 jobs:
@@ -31,12 +30,16 @@ jobs:
        ls
        
     - name: Switch to pages
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+    
+    - name: Make the publish
       run: |
         git --version
         git config user.name "GitHub Actionspants"
         git config user.email "<>"
-        git checkout gh-pages
         mv dist/${{ github.event.pull_request.number }} pr/${{ github.event.pull_request.number }}
-        git add pr/*
-        git commit -m "(re)publish PR because commit ${{ github.event.pull_request.head.sha }}"
+        git commit -am "(re)publish docs for PR because commit ${{ github.event.pull_request.head.sha }}"
+        git push
         echo sigh
