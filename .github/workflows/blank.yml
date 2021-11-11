@@ -1,0 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, sychonize, edited, reopened]
+    
+jobs:
+  lets-do-this:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      with:
+       ref: ${{ github.event.pull_request.head.sha }}
+
+    - name: Setup our friend node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+    - name: Buildish stuff
+      run: |
+       echo at sha ${{ github.event.pull_request.head.sha }}
+       mkdir -p dist/${{ github.event.pull_request.number }}
+       cp src/* dist/${{ github.event.pull_request.number }}
+    
+    - name: Switch to pages
+      run: |
+        git --version
+        git config user.name "GitHub Actionspants"
+        git config user.email "<>"
