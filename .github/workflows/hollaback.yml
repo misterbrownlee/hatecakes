@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: LouisBrunner/checks-action@v1
+    - uses: LouisBrunner/checks-action@v1.2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: Success
