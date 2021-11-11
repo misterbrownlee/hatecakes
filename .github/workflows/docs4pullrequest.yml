@@ -1,0 +1,39 @@
+# this will build a PR and push to gh-pages
+name: Page it up fool
+
+on: pull_request
+    
+jobs:
+  lets-do-this:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      with:
+       ref: ${{ github.event.pull_request.head.sha }}
+
+    - name: Setup our friend node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+    - name: Buildish stuff
+      run: |
+       echo at sha ${{ github.event.pull_request.head.sha }}
+       mkdir -p dist/pr/${{ github.event.pull_request.number }}
+       cp src/* dist/pr/${{ github.event.pull_request.number }}
+       cd dist/pr/${{ github.event.pull_request.number }}
+       mv ohcakes.html index.html
+       pwd
+       ls
+       
+    - name: Deploy OH BOY
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        target_branch: gh-pages
+        build_dir: dist/
+        jekyll: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
