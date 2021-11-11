@@ -26,9 +26,17 @@ jobs:
        echo at sha ${{ github.event.pull_request.head.sha }}
        mkdir -p dist/${{ github.event.pull_request.number }}
        cp src/* dist/${{ github.event.pull_request.number }}
-    
+       cd dist/${{ github.event.pull_request.number }}
+       pwd
+       ls
+       
     - name: Switch to pages
       run: |
         git --version
         git config user.name "GitHub Actionspants"
         git config user.email "<>"
+        git checkout gh-pages
+        mv dist/${{ github.event.pull_request.number }} pr/${{ github.event.pull_request.number }}
+        git add pr/*
+        git commit -m "(re)publish PR because commit ${{ github.event.pull_request.head.sha }}"
+        echo sigh
