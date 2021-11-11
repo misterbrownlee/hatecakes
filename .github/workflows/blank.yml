@@ -4,7 +4,6 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
     types: [opened, sychonize, edited, reopened]
     
 jobs:
@@ -24,11 +23,19 @@ jobs:
     - name: Buildish stuff
       run: |
        echo at sha ${{ github.event.pull_request.head.sha }}
-       mkdir -p dist/${{ github.event.pull_request.number }}
-       cp src/* dist/${{ github.event.pull_request.number }}
-    
-    - name: Switch to pages
-      run: |
-        git --version
-        git config user.name "GitHub Actionspants"
-        git config user.email "<>"
+       mkdir -p dist/pr/${{ github.event.pull_request.number }}
+       cp src/* dist/pr/${{ github.event.pull_request.number }}
+       cd dist/pr/${{ github.event.pull_request.number }}
+       mv ohcakes.html index.html
+       pwd
+       ls
+       
+    - name: Deploy OH BOY
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        target_branch: gh-pages
+        build_dir: dist/
+        jekyll: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
