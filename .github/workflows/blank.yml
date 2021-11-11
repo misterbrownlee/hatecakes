@@ -34,5 +34,6 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./pr/${{ github.event.pull_request.number }}
-        destination_dir: ./pr/${{ github.event.pull_request.number }}
+        keep_files: true
+        publish_dir: dist/${{ github.event.pull_request.number }}
+        destination_dir: pr/${{ github.event.pull_request.number }}
