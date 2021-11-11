@@ -30,10 +30,11 @@ jobs:
        pwd
        ls
        
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Deploy OH BOY
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        keep_files: true
-        publish_dir: dist/${{ github.event.pull_request.number }}
-        destination_dir: pr/${{ github.event.pull_request.number }}
+        target_branch: gh-pages
+        build_dir: dist/${{ github.event.pull_request.number }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
