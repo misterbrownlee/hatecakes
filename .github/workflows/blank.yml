@@ -23,9 +23,9 @@ jobs:
     - name: Buildish stuff
       run: |
        echo at sha ${{ github.event.pull_request.head.sha }}
-       mkdir -p dist/${{ github.event.pull_request.number }}
-       cp src/* dist/${{ github.event.pull_request.number }}
-       cd dist/${{ github.event.pull_request.number }}
+       mkdir -p dist/pr/${{ github.event.pull_request.number }}
+       cp src/* dist/pr/${{ github.event.pull_request.number }}
+       cd dist/pr/${{ github.event.pull_request.number }}
        mv ohcakes.html index.html
        pwd
        ls
