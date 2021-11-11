@@ -2,8 +2,7 @@
 
 name: CI
 
-on:
-  pull_request:
+on: pull_request
     
 jobs:
   lets-do-this:
