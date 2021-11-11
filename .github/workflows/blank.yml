@@ -4,7 +4,7 @@ name: CI
 
 on:
   pull_request:
-    types: [opened, sychonize, edited, reopened]
+    types: [opened, synchronize, edited, reopened]
     
 jobs:
   lets-do-this:
