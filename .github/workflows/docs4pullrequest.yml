@@ -15,7 +15,8 @@ jobs:
     - name: Setup our friend node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: 14  
+    - run: npm install
 
     - name: Buildish stuff
       run: |
@@ -28,12 +29,7 @@ jobs:
        ls
        
     - name: Deploy OH BOY
-      if: success()
-      uses: crazy-max/ghaction-github-pages@v2
-      with:
-        target_branch: gh-pages
-        build_dir: dist/
-        jekyll: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        ./node_modules/.bin/gh-pages -d dist/pr/${{ github.event.pull_request.number }} -f -e ./pr/${{ github.event.pull_request.number }}
+      
 
