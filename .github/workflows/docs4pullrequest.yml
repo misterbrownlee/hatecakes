@@ -36,7 +36,7 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-        ./node_modules/.bin/gh-pages -e \
+        ./node_modules/.bin/gh-pages -f \
         -d dist/pr/${{ github.event.pull_request.number }} \
 
       # run: |
