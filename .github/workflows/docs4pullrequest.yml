@@ -33,6 +33,7 @@ jobs:
        ls
 
     - name: Deploy OH BOY
+      run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
 
