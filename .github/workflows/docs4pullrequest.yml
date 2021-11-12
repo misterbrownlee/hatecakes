@@ -34,8 +34,9 @@ jobs:
 
     - name: Deploy OH BOY
       run: |
-        git config --global user.email "adobe-git-bot@adobe.com"
-        git config --global user.name "github action bot"
-        ./node_modules/.bin/gh-pages -d dist/pr/${{ github.event.pull_request.number }} -f -e ./pr/${{ github.event.pull_request.number }}
+        ./node_modules/.bin/gh-pages |
+        -d dist/pr/${{ github.event.pull_request.number }} |
+        -f -e ./pr/${{ github.event.pull_request.number }} |
+        --user "Misterbrownlee <ixab.001@gmail.com>"
 
 
