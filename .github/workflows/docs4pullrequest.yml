@@ -34,9 +34,7 @@ jobs:
 
     - name: Deploy OH BOY
       run: |
-        ./node_modules/.bin/gh-pages |
-        -d dist/pr/${{ github.event.pull_request.number }} |
-        -f -e ./pr/${{ github.event.pull_request.number }} |
+        ./node_modules/.bin/gh-pages \
+        -d dist/pr/${{ github.event.pull_request.number }} \
+        -f -e ./pr/${{ github.event.pull_request.number }} \
         --user "Misterbrownlee <ixab.001@gmail.com>"
-
-
