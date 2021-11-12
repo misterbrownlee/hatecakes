@@ -33,8 +33,10 @@ jobs:
        ls
 
     - name: Deploy OH BOY
-      run: |
-        ./node_modules/.bin/gh-pages \
-        -d dist/pr/${{ github.event.pull_request.number }} \
-        -f -e ./pr/${{ github.event.pull_request.number }} \
-        --user "Aaron <ixab.001@gmail.com>"
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+
+      # run: |
+      #   ./node_modules/.bin/gh-pages \
+      #   -d dist/pr/${{ github.event.pull_request.number }} \
+      #   -f -e ./pr/${{ github.event.pull_request.number }} \
