@@ -4,7 +4,10 @@
   "description": "testing github actions",
   "main": "whatever.js",
   "scripts": {
-    "test": "testwhatever.js"
+    "clean": "rm -rf dist",
+    "test": "testwhatever.js",
+    "build": ". ./tasks/build.sh",
+    "pages": "gh-pages -f -d dist/pr/${{ github.event.pull_request.number }}"
   },
   "repository": {
     "type": "git",
