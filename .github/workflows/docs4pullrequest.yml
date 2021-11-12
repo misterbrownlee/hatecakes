@@ -1,7 +1,8 @@
 # this will build a PR and push to gh-pages
 name: Page it up fool
 
-on: pull_request
+
+on: [pull_request, workflow_dispatch]
 
 jobs:
   lets-do-this:
@@ -15,7 +16,10 @@ jobs:
     - name: Setup our friend node.js
       uses: actions/setup-node@v1
       with:
+
         node-version: 14
+
+    - name: Install
       run: npm install
 
     - name: Buildish stuff
@@ -29,12 +33,7 @@ jobs:
        ls
 
     - name: Deploy OH BOY
-      if: success()
-      uses: crazy-max/ghaction-github-pages@v2
-      with:
-        target_branch: gh-pages
-        build_dir: dist/
-        jekyll: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        ./node_modules/.bin/gh-pages -d dist/pr/${{ github.event.pull_request.number }} -f -e ./pr/${{ github.event.pull_request.number }}
+
 
