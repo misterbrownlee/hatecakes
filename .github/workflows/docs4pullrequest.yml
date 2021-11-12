@@ -1,7 +1,7 @@
 # this will build a PR and push to gh-pages
 name: Page it up fool
 
-on: pull_request
+on: [pull_request, workflow_dispatch]
     
 jobs:
   lets-do-this:
