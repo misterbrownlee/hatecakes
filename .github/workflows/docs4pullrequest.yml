@@ -2,11 +2,11 @@
 name: Page it up fool
 
 on: pull_request
-    
+
 jobs:
   lets-do-this:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
       with:
@@ -16,6 +16,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14
+      run: npm install
 
     - name: Buildish stuff
       run: |
@@ -26,7 +27,7 @@ jobs:
        mv ohcakes.html index.html
        pwd
        ls
-       
+
     - name: Deploy OH BOY
       if: success()
       uses: crazy-max/ghaction-github-pages@v2
