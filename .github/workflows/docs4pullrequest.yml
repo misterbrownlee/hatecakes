@@ -34,12 +34,6 @@ jobs:
 
     - name: Deploy OH BOY
       run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
-        ./node_modules/.bin/gh-pages -f \
+        ./node_modules/.bin/gh-pages \
         -d dist/pr/${{ github.event.pull_request.number }} \
-
-      # run: |
-      #   ./node_modules/.bin/gh-pages \
-      #   -d dist/pr/${{ github.event.pull_request.number }} \
-      #   -f -e ./pr/${{ github.event.pull_request.number }} \
+        -a -f -e ./pr/${{ github.event.pull_request.number }} \
