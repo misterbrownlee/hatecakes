@@ -1,0 +1,28 @@
+{
+  "name": "hatecakes",
+  "version": "1.0.0",
+  "description": "testing github actions",
+  "main": "whatever.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "test": "testwhatever.js",
+    "build": ". ./tasks/build.sh",
+    "pages": "gh-pages -f -d dist/pr/1636756665"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misterbrownlee/hatecakes.git"
+  },
+  "keywords": [
+    "actions"
+  ],
+  "author": "brownlee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/misterbrownlee/hatecakes/issues"
+  },
+  "homepage": "https://github.com/misterbrownlee/hatecakes#readme",
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}

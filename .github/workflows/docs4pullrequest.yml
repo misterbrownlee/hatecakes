@@ -1,12 +1,13 @@
 # this will build a PR and push to gh-pages
 name: Page it up fool
 
+
 on: [pull_request, workflow_dispatch]
-    
+
 jobs:
   lets-do-this:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
       with:
@@ -15,8 +16,9 @@ jobs:
     - name: Setup our friend node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 14  
-    
+
+        node-version: 14
+
     - name: Install
       run: npm install
 
@@ -29,9 +31,11 @@ jobs:
        mv ohcakes.html index.html
        pwd
        ls
-       
+
     - name: Deploy OH BOY
       run: |
-        ./node_modules/.bin/gh-pages -d dist/pr/${{ github.event.pull_request.number }} -f -e ./pr/${{ github.event.pull_request.number }}
-      
-
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        # ./node_modules/.bin/gh-pages \
+        # -d dist/pr/${{ github.event.pull_request.number }} \
+        # -a -f -e ./pr/${{ github.event.pull_request.number }} \
